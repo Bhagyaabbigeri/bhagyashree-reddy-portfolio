@@ -22,13 +22,11 @@ export default function Overlay({ scrollYProgress, imageLayout }: OverlayProps) 
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (v) => {
-      if (v >= 0.00 && v < 0.20)       setActiveBlock(0);
-      else if (v >= 0.20 && v < 0.25)  setActiveBlock(null);
-      else if (v >= 0.25 && v < 0.45)  setActiveBlock(1);
-      else if (v >= 0.45 && v < 0.50)  setActiveBlock(null);
-      else if (v >= 0.50 && v < 0.70)  setActiveBlock(2);
-      else if (v >= 0.70 && v < 0.75)  setActiveBlock(null);
-      else if (v >= 0.75 && v < 0.95)  setActiveBlock(3);
+      if (v >= 0.00 && v < 0.25)       setActiveBlock(0);
+      else if (v >= 0.25 && v < 0.30)  setActiveBlock(null);
+      else if (v >= 0.30 && v < 0.55)  setActiveBlock(1);
+      else if (v >= 0.55 && v < 0.60)  setActiveBlock(null);
+      else if (v >= 0.60 && v < 0.95)  setActiveBlock(2);
       else                              setActiveBlock(null);
     });
     return unsubscribe;
@@ -151,39 +149,9 @@ export default function Overlay({ scrollYProgress, imageLayout }: OverlayProps) 
         </div>
       </div>
 
-      {/* ── Block 2 · Experience — LEFT GUTTER ── */}
+      {/* ── Block 2 · Featured Projects — RIGHT GUTTER ── */}
       <div
-        style={{ ...show(2), ...gutterStyle("left") }}
-        className="fixed inset-x-4 bottom-6 md:inset-x-auto md:left-8 md:bottom-12 lg:left-12 lg:bottom-16 z-[90] max-w-md"
-      >
-        <div
-          className="w-full space-y-3 bg-[#030014]/80 border border-orange-500/30 backdrop-blur-xl rounded-2xl p-4 sm:p-6"
-          style={{ boxShadow: "0 0 40px rgba(249,115,22,0.15), 0 8px 32px rgba(0,0,0,0.6)" }}
-        >
-          <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
-            <span className="text-orange-400 font-mono text-[8px] sm:text-[10px] tracking-widest uppercase">Experience</span>
-          </div>
-          <div className="space-y-4">
-            <div className="border-l-2 border-orange-500/40 pl-4 text-left">
-              <p className="text-zinc-500 font-mono text-[8px] sm:text-[10px] mb-0.5">Aug 2025 – Mar 2026</p>
-              <h4 className="text-white text-xs sm:text-sm font-bold">SDE Intern</h4>
-              <p className="text-orange-300 text-[10px] sm:text-xs">Algorithms365</p>
-              <p className="text-zinc-400 text-[8px] sm:text-[10px] mt-0.5">Java · Python · DSA · System Design</p>
-            </div>
-            <div className="border-l-2 border-amber-500/40 pl-4 text-left">
-              <p className="text-zinc-500 font-mono text-[8px] sm:text-[10px] mb-0.5">Apr 2026 – Present</p>
-              <h4 className="text-white text-xs sm:text-sm font-bold">Creative Director</h4>
-              <p className="text-orange-300 text-[10px] sm:text-xs">Involynk</p>
-              <p className="text-zinc-400 text-[8px] sm:text-[10px] mt-0.5">Visual Identity · UI/UX · Brand Storytelling · Creative Direction</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Block 3 · Featured Projects — RIGHT GUTTER ── */}
-      <div
-        style={{ ...show(3), ...gutterStyle("right") }}
+        style={{ ...show(2), ...gutterStyle("right") }}
         className="fixed inset-x-4 bottom-6 md:inset-x-auto md:right-8 md:bottom-12 lg:right-12 lg:bottom-16 z-[90] max-w-md"
       >
         <div

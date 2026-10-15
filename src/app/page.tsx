@@ -9,7 +9,6 @@ import {
   IntroSection,
   EducationSection,
   SkillsSection,
-  ExperienceSection,
   AchievementsSection,
   ContactSection,
 } from "@/components/PortfolioSections";
@@ -21,7 +20,6 @@ export default function Home() {
     { name: "About", href: "#intro" },
     { name: "Education", href: "#education" },
     { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
     { name: "Achievements", href: "#achievements" },
     { name: "Contact", href: "#contact" },
@@ -146,19 +144,15 @@ export default function Home() {
         {/* SECTION 3 — TECHNICAL SKILLS */}
         <SkillsSection />
 
-        {/* SECTION 4 — EXPERIENCE */}
-        <ExperienceSection />
-
-        {/* SECTION 5 — PROJECTS */}
+        {/* SECTION 4 — PROJECTS */}
         <Projects />
 
-        {/* SECTION 6 — ACHIEVEMENTS */}
+        {/* SECTION 5 — ACHIEVEMENTS */}
         <AchievementsSection />
 
-        {/* SECTION 7 — CONTACT */}
+        {/* SECTION 6 — CONTACT */}
         <ContactSection />
       </main>
     </div>
   );
 }
-
