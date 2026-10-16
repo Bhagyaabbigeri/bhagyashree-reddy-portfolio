@@ -10,6 +10,8 @@ import {
   Cpu,
   Trophy,
   Brain,
+  BookOpenText,
+  ClipboardList,
   ArrowUpRight,
 } from "lucide-react";
 
@@ -70,6 +72,7 @@ interface ProjectItem {
   accent: string;
   image?: string;
   screenshots?: string[];
+  buttonLabel?: string;
 }
 
 const projects: ProjectItem[] = [
@@ -145,8 +148,34 @@ const projects: ProjectItem[] = [
     ],
   },
   {
-    id: "empowerher",
+    id: "spacerisk-radar-technical-writing",
     num: "04",
+    title: "SpaceRisk Radar — Technical Writing Portfolio",
+    desc: "Explore technical articles, system architecture, data-flow documentation, API references, setup guides, user guides, troubleshooting, and the technical glossary for SpaceRisk Radar.",
+    tags: ["Technical Articles", "Architecture", "Data Flow", "API Reference", "User Guides", "Glossary"],
+    link: "https://bhagyabiggeri.github.io/SpaceRiskRadar-Technical-Writing-Portfolio/",
+    language: "Technical Writing",
+    langColor: "#22D3EE",
+    icon: BookOpenText,
+    accent: "from-cyan-500/30 to-blue-400/10",
+    buttonLabel: "Explore Documentation",
+  },
+  {
+    id: "openhealth-case-study",
+    num: "05",
+    title: "OpenHealth — Project Case Study",
+    desc: "Present the OpenHealth project case study, highlighting the problem, proposed solution, key features, technical approach, and findings documented in the repository.",
+    tags: ["Problem Discovery", "Product Requirements", "UX Design", "Technical Approach", "QA & Release"],
+    link: "https://github.com/Bhagyaabbigeri/GokulaHealth-Project-Case-Study",
+    language: "Project Case Study",
+    langColor: "#4ADE80",
+    icon: ClipboardList,
+    accent: "from-green-500/30 to-emerald-400/10",
+    buttonLabel: "View Case Study",
+  },
+  {
+    id: "empowerher",
+    num: "06",
     title: "EmpowerHer",
     desc: "A comprehensive women's safety and empowerment platform. Features a one-tap SOS system with real-time GPS location sharing via Twilio, an AI-powered safety assistant for legal and self-defense guidance, and a community hub for mentorship and safe accommodation discovery.",
     tags: ["React", "TypeScript", "Node.js", "Express.js", "MongoDB", "Twilio", "AI Assistant"],
@@ -168,7 +197,7 @@ const projects: ProjectItem[] = [
   },
   {
     id: "real-time-face-recognition",
-    num: "05",
+    num: "07",
     title: "Real-time Face Recognition",
     desc: "Real-time face recognition system using OpenCV and LBPH algorithm for high-accuracy biometric identification.",
     tags: ["Python", "OpenCV", "LBPH Algorithm", "Face Recognition"],
@@ -180,7 +209,7 @@ const projects: ProjectItem[] = [
   },
   {
     id: "hackvyuha-03",
-    num: "06",
+    num: "08",
     title: "HackVyuha-03",
     desc: "Hackathon project that secured a top 50 ranking out of 150 teams at BLDEAs HackVyuha.",
     tags: ["JavaScript", "HTML", "CSS", "Hackathon"],
@@ -192,7 +221,7 @@ const projects: ProjectItem[] = [
   },
   {
     id: "sde-full-stack",
-    num: "07",
+    num: "09",
     title: "SDE-Full-Stack",
     desc: "Full-stack development projects from SDE Internship at Algorithms365, focusing on scalable Java systems.",
     tags: ["Java", "Full Stack", "Spring", "Database"],
@@ -451,7 +480,7 @@ function SimpleProjectCard({ project, index }: { project: ProjectItem; index: nu
 
           {/* Interactive Button */}
           <div className="group/btn relative inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-orange-500/5 border border-orange-500/10 text-[10px] font-bold text-orange-400 tracking-widest uppercase overflow-hidden transition-all duration-300 hover:bg-orange-500 hover:text-black hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]">
-            <span className="relative z-10">Deploy Artifact</span>
+            <span className="relative z-10">{project.buttonLabel || "Deploy Artifact"}</span>
             <ArrowUpRight className="w-3 h-3 relative z-10 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
           </div>
         </div>
