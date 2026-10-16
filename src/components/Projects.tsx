@@ -73,6 +73,7 @@ interface ProjectItem {
   image?: string;
   screenshots?: string[];
   buttonLabel?: string;
+  category?: string;
 }
 
 const projects: ProjectItem[] = [
@@ -149,29 +150,31 @@ const projects: ProjectItem[] = [
   },
   {
     id: "spacerisk-radar-technical-writing",
-    num: "04",
-    title: "SpaceRisk Radar — Technical Writing Portfolio",
-    desc: "Explore technical articles, system architecture, data-flow documentation, API references, setup guides, user guides, troubleshooting, and the technical glossary for SpaceRisk Radar.",
+    num: "01",
+    title: "SpaceRisk Radar: Technical Writing Portfolio",
+    desc: "Technical articles, system architecture, data-flow documentation, API references, setup guides, user guides, troubleshooting, and technical glossary for SpaceRisk Radar.",
     tags: ["Technical Articles", "Architecture", "Data Flow", "API Reference", "User Guides", "Glossary"],
     link: "https://bhagyabiggeri.github.io/SpaceRiskRadar-Technical-Writing-Portfolio/",
     language: "Technical Writing",
+    category: "TECHNICAL WRITING",
     langColor: "#22D3EE",
     icon: BookOpenText,
     accent: "from-cyan-500/30 to-blue-400/10",
-    buttonLabel: "Explore Documentation",
+    buttonLabel: "EXPLORE DOCUMENTATION",
   },
   {
     id: "openhealth-case-study",
-    num: "05",
-    title: "OpenHealth — Project Case Study",
-    desc: "Present the OpenHealth project case study, highlighting the problem, proposed solution, key features, technical approach, and findings documented in the repository.",
+    num: "02",
+    title: "OpenHealth: Project Case Study",
+    desc: "A project case study presenting the problem, proposed solution, key features, technical approach, and documented findings.",
     tags: ["Problem Discovery", "Product Requirements", "UX Design", "Technical Approach", "QA & Release"],
     link: "https://github.com/Bhagyaabbigeri/GokulaHealth-Project-Case-Study",
     language: "Project Case Study",
+    category: "PROJECT CASE STUDY",
     langColor: "#4ADE80",
     icon: ClipboardList,
     accent: "from-green-500/30 to-emerald-400/10",
-    buttonLabel: "View Case Study",
+    buttonLabel: "VIEW CASE STUDY",
   },
   {
     id: "empowerher",
@@ -489,9 +492,56 @@ function SimpleProjectCard({ project, index }: { project: ProjectItem; index: nu
   );
 }
 
+function FeaturedWorkCard({ project, index }: { project: ProjectItem; index: number }) {
+  const Icon = project.icon;
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, delay: index * 0.1 }}
+      className="group relative mb-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.02] shadow-2xl transition-colors duration-500 hover:border-orange-500/30 md:mb-10"
+    >
+      <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${project.accent} opacity-[0.04] transition-opacity duration-500 group-hover:opacity-[0.1]`} />
+      <div className="relative grid min-h-[300px] grid-cols-1 items-center gap-8 p-6 sm:p-8 md:grid-cols-[1fr_auto] md:gap-12 md:p-12">
+        <div className="max-w-3xl">
+          <div className="mb-5 flex flex-wrap items-center gap-3">
+            <span className="font-mono text-xs font-bold tracking-[0.2em] text-zinc-500">
+              FEATURED WORK {project.num}
+            </span>
+            <span className="rounded-full border border-orange-500/20 bg-orange-500/[0.06] px-3 py-1 font-mono text-[10px] font-bold tracking-[0.16em] text-orange-300">
+              {project.category}
+            </span>
+          </div>
+          <h3 className="max-w-3xl text-3xl font-black tracking-tight text-white transition-colors duration-300 group-hover:text-orange-100 sm:text-4xl md:text-5xl">
+            {project.title}
+          </h3>
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-zinc-400 md:text-base">
+            {project.desc}
+          </p>
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-7 inline-flex min-h-12 items-center gap-3 rounded-xl border border-orange-500/25 bg-orange-500/[0.07] px-5 py-3 font-mono text-xs font-bold tracking-[0.14em] text-orange-300 transition-all duration-300 hover:border-orange-400 hover:bg-orange-500 hover:text-black hover:shadow-[0_0_30px_rgba(249,115,22,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030014]"
+          >
+            {project.buttonLabel}
+            <ArrowUpRight aria-hidden="true" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </div>
+        <div className={`flex h-24 w-24 items-center justify-center self-start rounded-3xl border border-white/10 bg-gradient-to-br ${project.accent} text-orange-300 shadow-inner md:h-32 md:w-32 md:self-center`}>
+          <Icon aria-hidden="true" className="h-10 w-10 md:h-14 md:w-14" />
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
 export default function Projects() {
   const featuredProjects = projects.slice(0, 3);
-  const otherProjects = projects.slice(3);
+  const editorialProjects = projects.slice(3, 5);
+  const otherProjects = projects.slice(5);
 
   return (
     <section id="projects" className="relative w-full bg-[#030014] px-6 py-14 md:py-32 z-20 overflow-hidden">
@@ -514,51 +564,36 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* ── HEADER ── */}
-        <div className="space-y-10 mb-20 md:mb-32 text-center md:text-left">
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-2 px-4"
-            >
-              <div className="flex items-center justify-center md:justify-start gap-3 text-orange-400 font-mono text-sm md:text-lg font-bold tracking-[0.4em] uppercase">
-                <Code2 className="w-6 h-6 animate-pulse" />
-                SELECTED PROJECTS
-              </div>
-              <div className="h-[2px] w-32 bg-gradient-to-r from-orange-500 to-transparent mx-auto md:mx-0" />
-            </motion.div>
-
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 px-4">
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight text-white leading-none"
-              >
-                THINGS I&apos;VE{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-300 to-violet-400">
-                  BUILT
-                </span>
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="text-zinc-400 max-w-xl mx-auto md:mx-0 text-xs md:text-base leading-relaxed tracking-wide font-light"
-              >
-                Architecting real-world applications spanning space technology, mobile health, computer vision, and high-performance algorithms.
-              </motion.p>
-            </div>
+        <motion.header
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-16 px-4 text-center md:mb-24 md:text-left"
+        >
+          <div className="mb-5 flex items-center justify-center gap-3 font-mono text-xs font-bold uppercase tracking-[0.3em] text-orange-400 md:justify-start md:text-sm">
+            <Code2 className="h-5 w-5" aria-hidden="true" />
+            Selected Projects
           </div>
-        </div>
+          <h2 className="mx-auto max-w-5xl text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl md:mx-0 md:text-7xl">
+            Product &amp; Project Engineering Showcase
+          </h2>
+          <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 tracking-wide text-zinc-400 md:mx-0 md:text-base">
+            Selected case studies and technical documentation showcasing my approach to building solutions, understanding systems, and communicating technical concepts.
+          </p>
+        </motion.header>
 
         {/* ── FEATURED PROJECTS (STACKED) ── */}
         <div className="flex flex-col">
           {featuredProjects.map((project, idx) => (
             <ProjectCard key={project.id} project={project} index={idx} />
+          ))}
+        </div>
+
+        {/* ── FEATURED PRODUCT & ENGINEERING WORK ── */}
+        <div aria-label="Featured product and engineering work">
+          {editorialProjects.map((project, idx) => (
+            <FeaturedWorkCard key={project.id} project={project} index={idx} />
           ))}
         </div>
 
