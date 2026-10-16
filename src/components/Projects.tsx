@@ -154,7 +154,7 @@ const projects: ProjectItem[] = [
     title: "SpaceRisk Radar: Technical Writing Portfolio",
     desc: "Technical articles, system architecture, data-flow documentation, API references, setup guides, user guides, troubleshooting, and technical glossary for SpaceRisk Radar.",
     tags: ["Technical Articles", "Architecture", "Data Flow", "API Reference", "User Guides", "Glossary"],
-    link: "https://bhagyabiggeri.github.io/SpaceRiskRadar-Technical-Writing-Portfolio/",
+    link: "https://bhagyaabiggeri.github.io/SpaceRiskRadar-Technical-Writing-Portfolio/",
     language: "Technical Writing",
     category: "TECHNICAL WRITING",
     langColor: "#22D3EE",
