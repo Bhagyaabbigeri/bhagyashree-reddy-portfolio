@@ -163,11 +163,11 @@ const projects: ProjectItem[] = [
     buttonLabel: "EXPLORE DOCUMENTATION",
   },
   {
-    id: "openhealth-case-study",
+    id: "gokulahealth-case-study",
     num: "02",
-    title: "OpenHealth: Project Case Study",
-    desc: "A project case study presenting the problem, proposed solution, key features, technical approach, and documented findings.",
-    tags: ["Problem Discovery", "Product Requirements", "UX Design", "Technical Approach", "QA & Release"],
+    title: "GokulaHealth: Project Case Study",
+    desc: "A case study of GokulaHealth, an offline Android livestock record-keeping prototype, and its proposed V2 product workflow. The repository documents farmer research on paper-record errors and missed health milestones, then develops the approach through product requirements, milk-entry validation and analytics, UX wireframes, prioritization, Scrum planning, and QA and release plans. The V2 test suite is documented as planned, not executed.",
+    tags: ["Problem Discovery", "Product Requirements", "UX Design", "Prioritization", "Scrum", "QA & Release"],
     link: "https://github.com/Bhagyaabbigeri/GokulaHealth-Project-Case-Study",
     language: "Project Case Study",
     category: "PROJECT CASE STUDY",
@@ -178,7 +178,7 @@ const projects: ProjectItem[] = [
   },
   {
     id: "empowerher",
-    num: "06",
+    num: "04",
     title: "EmpowerHer",
     desc: "A comprehensive women's safety and empowerment platform. Features a one-tap SOS system with real-time GPS location sharing via Twilio, an AI-powered safety assistant for legal and self-defense guidance, and a community hub for mentorship and safe accommodation discovery.",
     tags: ["React", "TypeScript", "Node.js", "Express.js", "MongoDB", "Twilio", "AI Assistant"],
@@ -200,7 +200,7 @@ const projects: ProjectItem[] = [
   },
   {
     id: "real-time-face-recognition",
-    num: "07",
+    num: "05",
     title: "Real-time Face Recognition",
     desc: "Real-time face recognition system using OpenCV and LBPH algorithm for high-accuracy biometric identification.",
     tags: ["Python", "OpenCV", "LBPH Algorithm", "Face Recognition"],
@@ -212,7 +212,7 @@ const projects: ProjectItem[] = [
   },
   {
     id: "hackvyuha-03",
-    num: "08",
+    num: "06",
     title: "HackVyuha-03",
     desc: "Hackathon project that secured a top 50 ranking out of 150 teams at BLDEAs HackVyuha.",
     tags: ["JavaScript", "HTML", "CSS", "Hackathon"],
@@ -224,7 +224,7 @@ const projects: ProjectItem[] = [
   },
   {
     id: "sde-full-stack",
-    num: "09",
+    num: "07",
     title: "SDE-Full-Stack",
     desc: "Full-stack development projects from SDE Internship at Algorithms365, focusing on scalable Java systems.",
     tags: ["Java", "Full Stack", "Spring", "Database"],
@@ -539,9 +539,12 @@ function FeaturedWorkCard({ project, index }: { project: ProjectItem; index: num
 }
 
 export default function Projects() {
-  const featuredProjects = projects.slice(0, 3);
-  const editorialProjects = projects.slice(3, 5);
-  const otherProjects = projects.slice(5);
+  const featuredIds = ["spacerisk-radar", "orbital-command", "gokulahealth"];
+  const showcaseIds = ["spacerisk-radar-technical-writing", "gokulahealth-case-study"];
+  const featuredProjects = projects.filter((project) => featuredIds.includes(project.id));
+  const editorialProjects = projects.filter((project) => showcaseIds.includes(project.id));
+  const featuredAndShowcaseIds = new Set([...featuredIds, ...showcaseIds]);
+  const otherProjects = projects.filter((project) => !featuredAndShowcaseIds.has(project.id));
 
   return (
     <section id="projects" className="relative w-full bg-[#030014] px-6 py-14 md:py-32 z-20 overflow-hidden">
@@ -576,10 +579,10 @@ export default function Projects() {
             Selected Projects
           </div>
           <h2 className="mx-auto max-w-5xl text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl md:mx-0 md:text-7xl">
-            Product &amp; Project Engineering Showcase
+            Projects
           </h2>
           <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 tracking-wide text-zinc-400 md:mx-0 md:text-base">
-            Selected case studies and technical documentation showcasing my approach to building solutions, understanding systems, and communicating technical concepts.
+              Software projects spanning space technology, mobile health, computer vision, and full-stack development.
           </p>
         </motion.header>
 
@@ -590,12 +593,32 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* ── FEATURED PRODUCT & ENGINEERING WORK ── */}
-        <div aria-label="Featured product and engineering work">
+        {/* ── PRODUCT / PROJECT MANAGEMENT SHOWCASE ── */}
+        <section aria-labelledby="product-project-showcase-title" className="mb-16 mt-4 md:mb-24 md:mt-8">
+          <motion.header
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-10 px-4 md:mb-14"
+          >
+            <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.3em] text-orange-400">
+              Product / Project Engineering Showcase
+            </div>
+            <h2
+              id="product-project-showcase-title"
+              className="max-w-4xl text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl md:text-5xl"
+            >
+              Product / Project Management
+            </h2>
+            <p className="mt-5 max-w-3xl text-sm leading-7 tracking-wide text-zinc-400 md:text-base">
+              Selected technical documentation and project case studies demonstrating system understanding, structured problem-solving, and technical communication.
+            </p>
+          </motion.header>
           {editorialProjects.map((project, idx) => (
             <FeaturedWorkCard key={project.id} project={project} index={idx} />
           ))}
-        </div>
+        </section>
 
         {/* ── OTHER PROJECTS (GRID) ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
